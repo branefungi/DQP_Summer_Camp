@@ -7,20 +7,22 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp(name = "Teleop", group = "Teleop")
 public class SummerCamp extends OpMode {
-    DcMotor[][] drivetrain = new DcMotor[2][2];
-
-
+    DcMotor frontLeft;
+    DcMotor frontRight;
+    DcMotor backLeft;
+    DcMotor backRight;
+    double myVariable = 1;
     @Override
     public void init(){
-        drivetrain[0][0] = hardwareMap.get(DcMotor.class, "FL");
-        drivetrain[1][0] = hardwareMap.get(DcMotor.class, "FR");
-        drivetrain[0][1] = hardwareMap.get(DcMotor.class, "BL");
-        drivetrain[1][1] = hardwareMap.get(DcMotor.class, "BR");
+        frontLeft = hardwareMap.get(DcMotor.class, "FL");
+        frontRight = hardwareMap.get(DcMotor.class, "FR");
+        backLeft = hardwareMap.get(DcMotor.class, "BL");
+        backRight = hardwareMap.get(DcMotor.class, "BR");
 
-        drivetrain[0][0].setDirection(DcMotor.Direction.REVERSE);
-        drivetrain[1][0].setDirection(DcMotor.Direction.FORWARD);
-        drivetrain[0][1].setDirection(DcMotor.Direction.REVERSE);
-        drivetrain[1][1].setDirection(DcMotor.Direction.FORWARD);
+        frontLeft.setDirection(DcMotor.Direction.REVERSE);
+        frontRight.setDirection(DcMotor.Direction.FORWARD);
+        backLeft.setDirection(DcMotor.Direction.REVERSE);
+        backRight.setDirection(DcMotor.Direction.FORWARD);
 
     }
 
@@ -43,10 +45,11 @@ public class SummerCamp extends OpMode {
             powerBL /= max;
             powerBR /= max;
         }
-        drivetrain[0][0].setPower(powerFL);
-        drivetrain[1][0].setPower(powerFR);
-        drivetrain[0][1].setPower(powerBL);
-        drivetrain[1][1].setPower(powerBR);
+
+        frontLeft.setPower(powerFL);
+        frontRight.setPower(powerFR);
+        backLeft.setPower(powerBL);
+        backRight.setPower(powerBR);
     }
 }
 
