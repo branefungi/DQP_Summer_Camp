@@ -14,42 +14,24 @@ public class Reference extends LinearOpMode{
     public void runOpMode() {
 
         // Setup a motor
-        // Change "motorName" to match the name of the motor in the driver station configuration
+        // Change "motorName" to match the name of the motor (FL, FR, BL, or BR)
         DcMotor motorName;
         motorName = hardwareMap.get(DcMotor.class, "motorName");
         motorName.setDirection(DcMotorSimple.Direction.FORWARD); //
-
-        // Setup a servo
-        // Change "servoName" to match the name of the servo in the driver station configuration
-        Servo servoName;
-        servoName = hardwareMap.get(Servo.class, "servoName");
-        servoName.setDirection(Servo.Direction.FORWARD);
-
 
         waitForStart();
 
         while(opModeIsActive()){
 
             // Gamepad Buttons
-            // left_stick_x     Type: double
-            // left_stick_y     Type: double
-            // right_stick_x    Type: double
-            // right_stick_y    Type: double
-
-            // left_trigger     Type: double
-            // left_bumper      Type: boolean
-            // right_trigger    Type: double
-            // right_bumper     Type: boolean
-
-            // a    Type: boolean
-            // x    Type: boolean
-            // y    Type: boolean
-            // b    Type: boolean
+            // left_stick_x   
+            // left_stick_y    
+            // right_stick_x  
+            // right_stick_y   
 
 
             // stores a value from a gamepad button
             // replace "left_stick_x" with the button that you want
-            // replace "double" with the button type
             double myVariable = gamepad1.left_stick_x;
 
 
@@ -61,12 +43,8 @@ public class Reference extends LinearOpMode{
 
             // Set the power of a motor
             // Ranges from -1.0 (spin backwards at full power) to 1.0 (spin forwards at full power)
+            // 0 stops the motor
             motorName.setPower(0);
-
-
-            // Set the position of a servo
-            // Ranges from 0.0 to 1.0
-            servoName.setPosition(0);
         }
     }
 }
