@@ -1,59 +1,101 @@
-package org.firstinspires.ftc.teamcode.Autos;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.ImuOrientationOnRobot;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import java.util.Timer;
-
 @Autonomous(name = "Auto", group = "Autos")
-public class SummerCampAuto extends OpMode {
-    private DcMotor[][] drivetrain = new DcMotor[2][2];
-    private IMU imu;
-    private ElapsedTime opModeTimer;
+public class Auto extends LinearOpMode {
 
+    DcMotor frontLeft;
+    DcMotor frontRight;
+    DcMotor backLeft;
+    DcMotor backRight;
 
     @Override
-    public void init(){
-        drivetrain[0][0] = hardwareMap.get(DcMotor.class, "FL");
-        drivetrain[1][0] = hardwareMap.get(DcMotor.class, "FR");
-        drivetrain[0][1] = hardwareMap.get(DcMotor.class, "BL");
-        drivetrain[1][1] = hardwareMap.get(DcMotor.class, "BR");
+    public void runOpMode(){
+        frontLeft = hardwareMap.get(DcMotor.class, "FL");
+        frontRight = hardwareMap.get(DcMotor.class, "FR");
+        backLeft = hardwareMap.get(DcMotor.class, "BL");
+        backRight = hardwareMap.get(DcMotor.class, "BR");
 
-        imu = hardwareMap.get(IMU.class, "imu");
-        ImuOrientationOnRobot controlHubDirection = new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,RevHubOrientationOnRobot.UsbFacingDirection.UP);
-        imu.initialize(new IMU.Parameters(controlHubDirection));
-        opModeTimer = new ElapsedTime();
+        frontLeft.setDirection(DcMotor.Direction.REVERSE);;
+        backLeft.setDirection(DcMotor.Direction.REVERSE);
+
+        waitForStart();
+        
+        // Write the movements under this comment
+        forward();
+        
     }
-    @Override
-    public void start(){
-        opModeTimer.reset();
-    }
-    @Override
-    public void loop(){
-        double angle = Math.toDegrees(imu.getRobotYawPitchRollAngles().getYaw());
-        telemetry.addData("angle", angle);
-        double error = angle/180.0;
-        drivetrain[0][0].setPower(0.5 + error);
-        drivetrain[0][1].setPower(0.5 + error);
 
-        drivetrain[1][0].setPower(0.5 - error);
-        drivetrain[1][1].setPower(0.5 - error);
-        if(opModeTimer.seconds() > 3){
-            stop();
-        }
+
+
+    private void forward(){
+        frontLeft.setPower(0.6);
+        frontRight.setPower(0.6);
+        backLeft.setPower(0.6);
+        backRight.setPower(0.6);
+        sleep(1000);
+
+        frontLeft.setPower(0);
+        frontRight.setPower(0);
+        backLeft.setPower(0);
+        backRight.setPower(0);
     }
-    @Override
-    public void stop(){
-        drivetrain[0][0].setPower(0);
-        drivetrain[1][0].setPower(0);
-        drivetrain[0][1].setPower(0);
-        drivetrain[1][1].setPower(0);
+
+    private void backward(){
+        frontLeft.setPower(-0.6);
+        frontRight.setPower(-0.6);
+        backLeft.setPower(-0.6);
+        backRight.setPower(-0.6);
+
+        sleep(1000);
+
+        frontLeft.setPower(0);
+        frontRight.setPower(0);
+        backLeft.setPower(0);
+        backRight.setPower(0);
+    }
+
+    private void left(){
+        frontLeft.setPower(0.6);
+        frontRight.setPower(0.6);
+        backLeft.setPower(0.6);
+        backRight.setPower(0.6);
+
+        sleep(1300);
+
+        frontLeft.setPower(0);
+        frontRight.setPower(0);
+        backLeft.setPower(0);
+        backRight.setPower(0);
+    }
+
+    private void right(){
+        frontLeft.setPower(0.6);
+        frontRight.setPower(0.6);
+        backLeft.setPower(0.6);
+        backRight.setPower(0.6);
+
+        sleep(1300);
+
+        frontLeft.setPower(0);
+        frontRight.setPower(0);
+        backLeft.setPower(0);
+        backRight.setPower(0);
+    }
+
+    private void turnLeft(){
+
+    }
+
+    private void turnRight(){
+
     }
 }
-
-
