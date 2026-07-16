@@ -24,8 +24,8 @@ public class Auto extends LinearOpMode {
         backLeft = hardwareMap.get(DcMotor.class, "BL");
         backRight = hardwareMap.get(DcMotor.class, "BR");
 
-        frontLeft.setDirection(DcMotor.Direction.REVERSE);;
-        backLeft.setDirection(DcMotor.Direction.REVERSE);
+        frontRight.setDirection(DcMotor.Direction.REVERSE);;
+        backRight.setDirection(DcMotor.Direction.REVERSE);
 
         waitForStart();
         
@@ -89,13 +89,5 @@ public class Auto extends LinearOpMode {
         frontRight.setPower(0);
         backLeft.setPower(0);
         backRight.setPower(0);
-    }
-
-    private void turnLeft(){
-
-    }
-
-    private void turnRight(){
-
     }
 }
